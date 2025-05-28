@@ -1,0 +1,86 @@
+.gem-packs-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    position: relative;
+}
+
+.star-rotating {
+    animation: rotate 2s linear infinite;
+    transform-origin: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+   
+}
+
+@keyframes rotate {
+    from {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+.gem-pack-container-pack {
+    position: relative;
+    transform: skew(3deg);
+    overflow: hidden; 
+    border-radius: inherit;
+}
+
+.gem-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: all 0.3s ease;
+    border-radius: 8px;
+}
+
+.gem-pack-container-pack.active::after {
+    content: '';
+    position: absolute;
+   inset: 0;
+   margin: auto;
+ 
+    width: 96%; /* Use width/height instead of right/bottom */
+    height: 100%;
+    background: rgba(0, 0, 0, 0.596);
+    z-index: 1;
+    border-radius: inherit; /* Match image border-radius */
+    transform: skew(-3deg); /* Match the skew of the container */
+    border-radius: 10px;
+}
+
+/* Dialog styles */
+.dialog-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.dialog-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+@media (max-width: 480px) {
+    .gem-packs-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

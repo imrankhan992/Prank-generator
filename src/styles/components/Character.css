@@ -1,0 +1,29 @@
+.character-container {
+      display: flex
+;
+    /* align-items: flex-end; */
+    position: relative;
+    width: 100%;
+    padding: 0 15px;
+    margin-top: auto;
+    margin-bottom: 10px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+
+.character-image-container {
+  width: 90px;
+  height: 90px;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 3;
+}
+
+.character-image {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.3));
+  animation: bounce 6s infinite ease-in-out;
+}

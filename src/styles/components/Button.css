@@ -1,0 +1,126 @@
+.button {
+  font-family: 'Lilita One', sans-serif;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  position: relative;
+  text-align: center;
+  letter-spacing: 0.5px;
+  border: 3px solid #000;
+  outline: none;
+}
+.buttton-container-confirmation{
+  position: relative;
+    display: table;
+    margin: 10px auto 0 auto;
+}
+.ufcb-b {
+    position: relative;
+    height: 68px;
+    width: 150px;
+    margin: 0 auto;
+    background: url(../../assets/verify_enabled.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    text-align: center;
+    line-height: 68px;
+    display: block;
+    cursor: pointer;
+    color: #fff !important;
+    text-decoration: none !important;
+    transform: skew(3deg);
+}
+.ufcb-b-t-w {
+    position: absolute;
+    right: 0;
+    width: 100%;
+    top: -28.5px;
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 0.7em;
+    text-shadow: none;
+    color: #fada54;
+}
+.ufcb-b span {
+    color: #fff;
+    position: relative;
+    text-transform: uppercase;
+}
+.button-primary {
+ background: url(../../assets/continue_blue.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    width: 120px;
+    height: 44px;
+    border: none;
+    box-shadow: none;
+    outline: none;
+    text-align: center;
+    line-height: 40px;
+    color: #fff;
+    text-shadow: 0 2px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    text-transform: uppercase;
+    display: table;
+    margin: 0 auto;
+    cursor: pointer;
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+
+.button-primary:active {
+  transform: translateY(2px);
+  box-shadow: 0 3px 0 #b38a00, 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.button-secondary {
+  background-color: #5e9eff;
+  color: white;
+  box-shadow: 0 5px 0 #0057b8, 0 6px 10px rgba(0, 0, 0, 0.3);
+}
+
+.button-secondary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 0 #0057b8, 0 8px 15px rgba(0, 0, 0, 0.4);
+}
+
+.button-secondary:active {
+  transform: translateY(2px);
+  box-shadow: 0 3px 0 #0057b8, 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.button-danger {
+  background-color: #ff5252;
+  color: white;
+  box-shadow: 0 5px 0 #b30000, 0 6px 10px rgba(0, 0, 0, 0.3);
+}
+
+.button-danger:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 0 #b30000, 0 8px 15px rgba(0, 0, 0, 0.4);
+}
+
+.button-danger:active {
+  transform: translateY(2px);
+  box-shadow: 0 3px 0 #b30000, 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.button.disabled {
+  background-color: #cccccc;
+  color: #666666;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+  border-color: #999999;
+}
+
+.button.disabled:hover {
+  transform: none;
+  box-shadow: none;
+}

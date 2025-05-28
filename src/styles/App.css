@@ -1,0 +1,102 @@
+.app-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  width: 600px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+ 
+}
+
+@media (max-width: 600px) {
+  .app-container {
+    width: 100%;
+    padding: 0 20px;
+  }
+  
+}
+
+.app-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.background-pattern {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  opacity: 0.5;
+  background-image: 
+    radial-gradient(circle at 15% 25%, rgba(255, 255, 255, 0.2) 1px, transparent 1px),
+    radial-gradient(circle at 75% 55%, rgba(255, 255, 255, 0.2) 1px, transparent 1px),
+    radial-gradient(circle at 35% 85%, rgba(255, 255, 255, 0.2) 1px, transparent 1px),
+    radial-gradient(circle at 65% 15%, rgba(255, 255, 255, 0.2) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+.logo-container {
+  margin: 20px 0;
+  animation: float 6s ease-in-out infinite;
+  filter: drop-shadow(0 5px 5px rgba(0, 0, 0, 0.2));
+  width: 200px;
+  display: flex;
+  justify-content: center;
+}
+
+.logo {
+  width: 100%;
+  max-width: 240px;
+  height: auto;
+}
+
+.main-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-grow: 1;
+  position: relative;
+}
+
+/* Bottom section with character and speech bubble */
+.character-section {
+  /* position: absolute;
+  bottom: 0;
+  left: 0; */
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  padding: 0 10px 10px;
+  z-index: 10;
+}
+
+/* Transitions for screen changes */
+.screen-transition-enter {
+  opacity: 0;
+  transform: scale(0.9);
+}
+
+.screen-transition-enter-active {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 300ms, transform 300ms;
+}
+
+.screen-transition-exit {
+  opacity: 1;
+}
+
+.screen-transition-exit-active {
+  opacity: 0;
+  transform: scale(1.1);
+  transition: opacity 300ms, transform 300ms;
+}

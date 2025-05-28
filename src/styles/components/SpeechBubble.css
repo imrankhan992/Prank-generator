@@ -1,0 +1,31 @@
+.speech-bubble {
+      width: 232px;
+    height: 100px;
+    background: url("../../assets/bubble_icon.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    padding: 2px 15px 28px 18px;
+    line-height: 1.2;
+    text-shadow: none;
+    color: #2f2f2f;
+}
+
+.speech-content {
+  position: relative;
+}
+
+
+.typing-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 15px;
+  background-color: #000;
+  margin-left: 2px;
+  animation: blink 0.7s infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+

@@ -1,0 +1,66 @@
+.gem-pack {
+  width: 100px;
+  height: 120px;
+  background-color: #9aff9a;
+  border-radius: 10px;
+  border: 3px solid #000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 8px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 0 #006400, 0 6px 10px rgba(0, 0, 0, 0.3);
+}
+
+.gem-pack:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 7px 0 #006400, 0 8px 15px rgba(0, 0, 0, 0.4);
+}
+
+.gem-pack:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 #006400, 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.gem-amount {
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+  text-shadow: 2px 2px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;
+  margin-top: 5px;
+  z-index: 2;
+}
+
+.gem-image-container {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 5px;
+}
+
+.gem-image {
+  /* max-width: 90%;
+  max-height: 50px; */
+  object-fit: contain;
+  /* filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3)); */
+  /* animation: pulse 3s infinite ease-in-out; */
+      
+      position: relative;
+
+}
+
+
+/* Custom shimmer animation for gem image */
+@keyframes shine {
+  0% {
+    background-position: -100px;
+  }
+  40%, 100% {
+    background-position: 300px;
+  }
+}
