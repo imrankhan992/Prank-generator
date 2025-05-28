@@ -1,10 +1,12 @@
 import express from 'express';
 import axios from 'axios';
 import cors from 'cors'; // if needed
-
+import path from 'path';
+// const __filename = fileURLToPath(import.meta.url);
 const app = express();
 const PORT = 3000;
 
+const __dirname = path.resolve()
 app.use(cors()); // Add this if calling from frontend on another port
 
 // Put your actual token here or use dotenv
@@ -23,7 +25,7 @@ app.get('/brawl-api', async (req, res) => {
   try {
     const response = await axios.get(url, {
       headers: {
-        Authorization: `Bearer ${BRAWL_API_TOKEN}`,
+        Authorization: BRAWL_API_TOKEN,
         Accept: 'application/json',
       },
     });
@@ -38,7 +40,33 @@ app.get('/brawl-api', async (req, res) => {
     });
   }
 });
+// console.log(path.join(__dirname, 'dist', 'index.html'))
+// Serve static files from React
+app.use(express.static(path.join(__dirname, 'dist')));
+console.log("Serving static files from: ", path.join(__dirname, 'dist'));
+// // Fallback for React Router
+app.get("*",(req,res)=>{
+
+    res.sendFile(path.join(__dirname,"dist","index.html"))
+})
 
 app.listen(PORT, () => {
   console.log(`Brawl API server is running on http://localhost:${PORT}`);
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

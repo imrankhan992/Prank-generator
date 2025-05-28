@@ -29,7 +29,7 @@ const PlayerIdScreen = ({ onSubmit, setShowDialog }) => {
 
     try {
       const response = await fetch(
-        `http://localhost:3000/player?tag=${encodeURIComponent(playerId)}`,
+        `http://localhost:3000/brawl-api?tag=${encodeURIComponent(playerId)}`,
         {
           headers: { 'Accept': 'application/json' }
         }
