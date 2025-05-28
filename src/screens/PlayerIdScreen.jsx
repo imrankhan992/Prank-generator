@@ -35,6 +35,8 @@ const PlayerIdScreen = ({ onSubmit, setShowDialog }) => {
         }
       );
 
+      // hl 
+
       const data = await response.json();
 
       if (!response.ok || data.error) {
