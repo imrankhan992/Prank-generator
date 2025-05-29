@@ -35,6 +35,7 @@
     border-radius: inherit;
 }
 
+
 .gem-image {
     display: block;
     width: 100%;
@@ -80,7 +81,11 @@
 }
 
 @media (max-width: 480px) {
-    .gem-packs-container {
-        grid-template-columns: repeat(2, 1fr);
+.gem-pack-container-pack{
+               width: 100px;
+    }
+
+    .gem-packs-container{
+        gap: 4px;
     }
 }

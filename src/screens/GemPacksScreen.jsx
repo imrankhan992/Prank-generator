@@ -10,7 +10,7 @@ import img2000 from "../assets/2000.png";
 import star from "../assets/star-white.png";
 import PlayerIdScreen from './PlayerIdScreen';
 
-const GemPacksScreen = ({ currentScreen,onSelectPack,handleSubmitPlayerId,selectedGem, setselectedGem }) => {
+const GemPacksScreen = ({ setCurrentScreen,currentScreen,onSelectPack,handleSubmitPlayerId,selectedGem, setselectedGem }) => {
   const [activePack, setActivePack] = useState(null);
   const [showDialog, setShowDialog] = useState(false);
 const gemImages = {
@@ -38,6 +38,7 @@ const gemImages = {
     // After 3 seconds, show dialog and reset active pack
     setTimeout(() => {
       setShowDialog(true);
+      setCurrentScreen('playerId');
       setActivePack(null);
       
      
@@ -65,7 +66,7 @@ const gemImages = {
       {/* Dialog that appears after 3 seconds */}
       {showDialog && (
         <div className="dialog-overlay">
-           <PlayerIdScreen selectedGem={selectedGem} onSubmit={handleSubmitPlayerId} setShowDialog={setShowDialog} />
+           <PlayerIdScreen setCurrentScreen={setCurrentScreen} selectedGem={selectedGem} onSubmit={handleSubmitPlayerId} setShowDialog={setShowDialog} />
            
           {/* <button onClick={() => setShowDialog(false)}>Close</button> */}
         </div>

@@ -15,31 +15,40 @@ function App() {
   const [transferProgress, setTransferProgress] = useState(0);
   const [selectedGem, setselectedGem] = useState(null)
   const [characterMessage, setCharacterMessage] = useState(
-    'Welcome Brawler! 🎮 Today\'s Special: FREE Gems Event! Choose your gem package 💎!'
+    ' Welcome Brawler! 🎮 Today\'s Special: FREE Gems Event! Choose your gem package 💎!'
   );
   const [messageType, setMessageType] = useState('');
   
   useEffect(() => {
+      let timeout;
+
     // Update character message based on current screen
     switch(currentScreen) {
       case 'gemPacks':
-        setCharacterMessage('Welcome Brawler! 🎮 Today\'s Special: FREE Gems Event! Choose your gem package 💎!');
+        setCharacterMessage(' Welcome Brawler! 🎮 Today\'s Special: FREE Gems Event! Choose your gem package 💎!');
         setMessageType('');
         break;
       case 'playerId':
-        setCharacterMessage('Awesome choice! Enter your Player ID to continue');
+        setCharacterMessage(' Awesome choice! Enter your Player ID to continue');
         setMessageType('');
         break;
-      case 'account':
-        setCharacterMessage('Starting the gem transfer process...');
+    case 'account':
+      setCharacterMessage(" Let me connect your account first! 🧠🔌");
+      setMessageType('');
+      
+      // Change the message after 3 seconds
+      timeout = setTimeout(() => {
+        setCharacterMessage(" Awesome kiyee! 🎉 Let me add gems to your account. Please wait a moment ⏳💎");
         setMessageType('');
-        break;
+      }, 4000);
+      break;
       case 'confirmation':
-        setCharacterMessage('CONGRATULATIONS kiyee, 💎 Your gems are ready to claim!');
+        setCharacterMessage(' CONGRATULATIONS kiyee, 💎 Your gems are ready to claim!');
         setMessageType('success');
         break;
+       
       default:
-        setCharacterMessage('Welcome to Brawl Stars!');
+        setCharacterMessage(' Welcome to Brawl Stars!');
     }
   }, [currentScreen]);
   
@@ -99,7 +108,7 @@ function App() {
   const renderCurrentScreen = () => {
     switch(currentScreen) {
       case 'gemPacks':
-        return <GemPacksScreen setselectedGem={setselectedGem} selectedGem={selectedGem} onSelectPack={handleSelectPack} handleSubmitPlayerId={handleSubmitPlayerId} />;
+        return <GemPacksScreen currentScreen={currentScreen} setCurrentScreen={setCurrentScreen} setselectedGem={setselectedGem} selectedGem={selectedGem} onSelectPack={handleSelectPack} handleSubmitPlayerId={handleSubmitPlayerId} />;
       
       case 'account':
         return (
@@ -107,6 +116,7 @@ function App() {
             playerInfo={playerInfo} 
             progress={transferProgress} 
             onContinue={handleContinueFromAccount}
+            currentScreen={currentScreen} setCurrentScreen={setCurrentScreen}
           />
         );
       case 'confirmation':
@@ -116,10 +126,13 @@ function App() {
             playerInfo={playerInfo}
             onFinish={handleFinish}
             selectedGem={selectedGem}
+            currentScreen={currentScreen} setCurrentScreen={setCurrentScreen}
+            setCharacterMessage={setCharacterMessage}
+            setMessageType={setMessageType}
           />
         );
       default:
-        return <GemPacksScreen onSelectPack={handleSelectPack} />;
+        return <GemPacksScreen currentScreen={currentScreen} setCurrentScreen={setCurrentScreen} setselectedGem={setselectedGem} selectedGem={selectedGem} onSelectPack={handleSelectPack} handleSubmitPlayerId={handleSubmitPlayerId} />;
     }
   };
   

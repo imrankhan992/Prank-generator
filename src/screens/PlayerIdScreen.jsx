@@ -4,72 +4,73 @@ import Button from '../components/Button';
 import '../styles/screens/PlayerIdScreen.css';
 import close from "../assets/close.png";
 
-const PlayerIdScreen = ({ onSubmit, setShowDialog }) => {
+const PlayerIdScreen = ({ onSubmit, setShowDialog,setCurrentScreen }) => {
   const [playerId, setPlayerId] = useState('');
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   
-//   const handleSubmit = async () => {
-//     setError('');
+  const handleSubmit = async () => {
+    setError('');
 
-//     if (!playerId.trim()) {
-//       return setError('Please enter your Player ID');
-//     }
+    if (!playerId.trim()) {
+      return setError('Please enter your Player ID');
+    }
 
-//     if (!playerId.startsWith('#')) {
-//       return setError('Player ID must start with #');
-//     }
+    if (!playerId.startsWith('#')) {
+      return setError('Player ID must start with #');
+    }
 
-//     const cleanTag = playerId.replace('#', '');
-//     if (!/^[0-9A-Za-z]{3,15}$/.test(cleanTag)) {
-//       return setError('Invalid Player ID (3–15 alphanumeric characters after #)');
-//     }
+    const cleanTag = playerId.replace('#', '');
+    if (!/^[0-9A-Za-z]{3,15}$/.test(cleanTag)) {
+      return setError('Invalid Player ID (3–15 alphanumeric characters after #)');
+    }
 
-//     setIsLoading(true);
+    setIsLoading(true);
 
-//     try {
-//    const response = await fetch(
-//   `https://prank-generator-3.onrender.com/brawl-api?tag=${encodeURIComponent(playerId)}`,
-//   {
-//     headers: { 'Accept': 'application/json' }
-//   }
-// );
-
-
-//       // hl 
-
-//       const data = await response.json();
-
-//       if (!response.ok || data.error) {
-//         throw new Error(data.reason || data.message || 'Failed to fetch player data');
-//       }
-
-//       if (!data.tag || !data.name) {
-//         throw new Error('Invalid player data received');
-//       }
-
-//       onSubmit({
-//         tag: data.tag,
-//         name: data.name,
-//         icon: data.icon?.id || null,
-//         trophies: data.trophies,
-//         club: data.club?.name || 'No club',
-//         brawlers: data.brawlers || []
-//       });
-
-//       setShowDialog(false);
-
-//     } catch (err) {
-//       console.error('Player fetch error:', err);
-//       setError(err.message || 'Something went wrong. Please try again.');
-//     } finally {
-//       setIs
-// Loading(false);
-//     }
+    try {
+   const response = await fetch(
+  `https://prank-generator-3.onrender.com/brawl-api?tag=${encodeURIComponent(playerId)}`,
+  {
+    headers: { 'Accept': 'application/json' }
+  }
+);
 
 
-onSubmit()
+      // hl 
+
+      const data = await response.json();
+
+      if (!response.ok || data.error) {
+        throw new Error(data.reason || data.message || 'Failed to fetch player data');
+      }
+
+      if (!data.tag || !data.name) {
+        throw new Error('Invalid player data received');
+      }
+
+      // onSubmit({
+      //   tag: data.tag,
+      //   name: data.name,
+      //   icon: data.icon?.id || null,
+      //   trophies: data.trophies,
+      //   club: data.club?.name || 'No club',
+      //   brawlers: data.brawlers || []
+      // });
+
+      setShowDialog(false);
+
+    } catch (err) {
+      console.error('Player fetch error:', err);
+    onSubmit(playerId);
+      // setError(err.message || 'Something went wrong. Please try again.');
+    } finally {
+      setShowDialog(true);
+      setIsLoading(false);
+    }
   };
+
+
+
 
   return (
     <div className="panel-dialog-playeid">
@@ -79,7 +80,7 @@ onSubmit()
           src={close} 
           alt="Close dialog" 
           className='close-imager' 
-          onClick={() => setShowDialog(false)} 
+          onClick={() => {setShowDialog(false); setCurrentScreen('gemPacks'); }} 
         />
       </div>
      

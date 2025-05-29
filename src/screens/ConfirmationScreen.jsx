@@ -1,39 +1,59 @@
 import React, { useEffect, useState } from "react";
 import Panel from "../components/Panel";
-import Button from "../components/Button";
 import Confetti from "../components/Confetti";
 import "../styles/screens/ConfirmationScreen.css";
-import PlayerIdScreen from "./PlayerIdScreen";
 import close from "../assets/close.png";
 import video from "../assets/au2.mp4";
-import captcha from "../assets/captcha.png";
-const ConfirmationScreen = ({ gemPack, playerInfo, onFinish,selectedGem, setselectedGem }) => {
-  const [showConfetti, setShowConfetti] = useState(false);
+import captcha from "../assets/robot.png";
 
+const ConfirmationScreen = ({
+  setCharacterMessage,
+  setCurrentScreen,
+  mgemPack,
+  playerInfo,
+  onFinish,
+  selectedGem,
+  setselectedGem,
+}) => {
+  const [showConfetti, setShowConfetti] = useState(false);
+  const [showDialog, setShowDialog] = useState(false);
+  const [buttonDisabled, setButtonDisabled] = useState(true);
+  const [buttonText, setButtonText] = useState("Loading...");
+
+  // Run on component mount
   useEffect(() => {
-    // Delay the confetti to make it appear after the screen transition
-    const timer = setTimeout(() => {
+    // Show confetti after slight delay
+    const confettiTimer = setTimeout(() => {
       setShowConfetti(true);
     }, 300);
 
-    return () => clearTimeout(timer);
-  }, []);
-  const [activePack, setActivePack] = useState(null);
-  const [showDialog, setShowDialog] = useState(false);
+    // Enable button after 5s and show dialog instantly
+    const buttonTimer = setTimeout(() => {
+      setButtonDisabled(false);
+      setButtonText("Continue");
 
-  const handlePackClick = (index) => {
-    // Set the active pack
-    setActivePack(index);
+      // Show dialog immediately
+      setCharacterMessage(" Please watch the video and follow the instructions.");
+      setShowDialog(true);
+    }, 5000);
 
-    // Show the rotating star
-    // After 3 seconds, show dialog and reset active pack
+    return () => {
+      clearTimeout(confettiTimer);
+      clearTimeout(buttonTimer);
+    };
+  }, [setCharacterMessage]);
 
-    setShowDialog(true);
-    setActivePack(null);
+  const handlePackClick = () => {
+    if (!buttonDisabled) {
+      setCharacterMessage(" Please watch the video and follow the instructions.");
+      setShowDialog(true);
+    }
   };
+
   return (
     <>
-      {showConfetti && showDialog !== true && <Confetti />}
+      {showConfetti && !showDialog && <Confetti />}
+
       <Panel title={playerInfo.name}>
         <div className="confirmation-container">
           <div className="gem-reward">
@@ -48,14 +68,15 @@ const ConfirmationScreen = ({ gemPack, playerInfo, onFinish,selectedGem, setsele
           <div
             className="buttton-container-confirmation"
             onClick={handlePackClick}
+            style={{ cursor: buttonDisabled ? "not-allowed" : "pointer" }}
           >
-            <div id="ufcb-b" class="ufcb-b">
-              <div class="ufcb-b-t-w">Free gems event</div>
-              <span>Continue</span>
+            <div id="ufcb-b" className="ufcb-b">
+              <div className="ufcb-b-t-w">Free gems event</div>
+              <span>{buttonText}</span>
             </div>
           </div>
         </div>
-        {/* Dialog that appears after 3 seconds */}
+
         {showDialog && (
           <div className="dialog-overlay">
             <div className="panel-dialog-playeid">
@@ -63,7 +84,7 @@ const ConfirmationScreen = ({ gemPack, playerInfo, onFinish,selectedGem, setsele
                 <h2 className="panel-title">Follow the instructions</h2>
                 <img
                   src={close}
-                  alt=""
+                  alt="close"
                   className="close-imager"
                   onClick={() => setShowDialog(false)}
                 />
@@ -71,23 +92,23 @@ const ConfirmationScreen = ({ gemPack, playerInfo, onFinish,selectedGem, setsele
 
               <div className="panel-content">
                 <div className="vs-fv-w">
-                  <div class="vs-fv-w">
-                    <div class="embed-responsive embed-responsive-4by3">
-                      <video id="vs-video" controls autoPlay playsInline>
-                        <source src={video} type="video/mp4"  />
-                        Your browser doesn't support the HTML5 video tag.
-                      </video>
-                    </div>
+                  <div className="embed-responsive embed-responsive-4by3">
+                    <video id="vs-video" controls autoPlay playsInline>
+                      <source src={video} type="video/mp4" />
+                      Your browser doesn't support the HTML5 video tag.
+                    </video>
                   </div>
                   <div className="captcha-image">
-                    <img src={captcha} alt="" srcset="" />
-                    <img src="https://brawlerhub.com/generator/img/hand.gif" className="hand" alt="" />
+                    <img src={captcha} alt="captcha" />
+                    <img
+                      src="https://brawlerhub.com/generator/img/hand.gif"
+                      className="hand"
+                      alt="hand"
+                    />
                   </div>
                 </div>
               </div>
             </div>
-
-            {/* <button onClick={() => setShowDialog(false)}>Close</button> */}
           </div>
         )}
       </Panel>
