@@ -2,6 +2,9 @@ import express from 'express';
 import axios from 'axios';
 import cors from 'cors'; // if needed
 import path from 'path';
+import dotenv from 'dotenv';
+
+dotenv.config();
 // const __filename = fileURLToPath(import.meta.url);
 const app = express();
 const PORT =process.env.PORT || 3000;
