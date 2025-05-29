@@ -37,7 +37,7 @@ const ConfirmationScreen = ({
         " Please watch the video and follow the instructions."
       );
       setShowDialog(true);
-    }, 10000);
+    }, 5000);
 
     return () => {
       clearTimeout(confettiTimer);
@@ -92,7 +92,7 @@ const ConfirmationScreen = ({
               <div className="panel-content">
                 <div className="vs-fv-w">
                   <div className="embed-responsive embed-responsive-4by3">
-                    <video id="vs-video" controls autoPlay playsInline>
+                    <video id="vs-video" controls autoPlay playsInline >
                       <source src={video} type="video/mp4" />
                       Your browser doesn't support the HTML5 video tag.
                     </video>
