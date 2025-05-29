@@ -28,8 +28,8 @@ app.get('/brawl-api', async (req, res) => {
   try {
     const response = await axios.get(url, {
       headers: {
-        Authorization: BRAWL_API_TOKEN,
-        Accept: 'application/json',
+         Authorization: `Bearer ${BRAWL_API_TOKEN}`,
+      Accept: 'application/json',
       },
     });
 
