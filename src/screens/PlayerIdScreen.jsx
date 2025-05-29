@@ -28,12 +28,13 @@ const PlayerIdScreen = ({ onSubmit, setShowDialog }) => {
     setIsLoading(true);
 
     try {
-      const response = await fetch(
-        `https://prank0011.netlify.app/brawl-api?tag=${encodeURIComponent(playerId)}`,
-        {
-          headers: { 'Accept': 'application/json' }
-        }
-      );
+   const response = await fetch(
+  `http://localhost:3000/brawl-api?tag=${encodeURIComponent(playerId)}`,
+  {
+    headers: { 'Accept': 'application/json' }
+  }
+);
+
 
       // hl 
 
