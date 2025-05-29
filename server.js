@@ -21,7 +21,7 @@ app.get('/brawl-api', async (req, res) => {
 
   const cleanedTag = tag.replace('#', '');
   const url = `https://api.brawlstars.com/v1/players/%23${cleanedTag}`;
-
+// jflsa
   try {
     const response = await axios.get(url, {
       headers: {
