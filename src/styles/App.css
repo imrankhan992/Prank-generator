@@ -67,6 +67,13 @@
   position: relative;
 }
 
+@media (max-width: 600px) {
+  .main-content {
+    width: 85%;
+  }
+  
+}
+
 /* Bottom section with character and speech bubble */
 .character-section {
   /* position: absolute;

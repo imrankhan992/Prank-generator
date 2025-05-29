@@ -45,7 +45,7 @@ const [searchIcon, setsearchIcon] = useState(true)
     if (progress <= 100) {
       setIsLoading(true);
       const timer = setTimeout(() => {
-        onContinue();
+        // onContinue();
       }, 1000); // Small delay for better UX
       
       return () => clearTimeout(timer);

@@ -18,7 +18,7 @@ body {
   min-height: 100vh;
   /* overflow: hidden; */
   position: relative;
-     
+     overflow-x: hidden;
     font-size: 16px;
     color: #fff;
     text-shadow: 0 2px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;

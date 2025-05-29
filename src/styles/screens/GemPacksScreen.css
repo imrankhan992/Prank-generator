@@ -6,6 +6,7 @@
     align-items: center;
     margin: 0 auto;
     position: relative;
+    padding-block: 1rem;
 }
 
 .star-rotating {
@@ -82,7 +83,8 @@
 
 @media (max-width: 480px) {
 .gem-pack-container-pack{
-               width: 100px;
+               width: 84px;
+
     }
 
     .gem-packs-container{
