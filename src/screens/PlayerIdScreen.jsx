@@ -29,7 +29,7 @@ const PlayerIdScreen = ({ onSubmit, setShowDialog }) => {
 
     try {
    const response = await fetch(
-  `http://localhost:3000/brawl-api?tag=${encodeURIComponent(playerId)}`,
+  `https://prank-generator-3.onrender.com/brawl-api?tag=${encodeURIComponent(playerId)}`,
   {
     headers: { 'Accept': 'application/json' }
   }
