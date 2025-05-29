@@ -15,7 +15,7 @@ function App() {
   const [transferProgress, setTransferProgress] = useState(0);
   const [selectedGem, setselectedGem] = useState(null)
   const [characterMessage, setCharacterMessage] = useState(
-    ' Welcome Brawler! 🎮 Today\'s Special: FREE Gems Event! Choose your gem package 💎!'
+    '  . Welcome Brawler! 🎮 Today\'s Special: FREE Gems Event! Choose your gem package 💎!'
   );
   const [messageType, setMessageType] = useState('');
   
@@ -25,7 +25,7 @@ function App() {
     // Update character message based on current screen
     switch(currentScreen) {
       case 'gemPacks':
-        setCharacterMessage(' Welcome Brawler! 🎮 Today\'s Special: FREE Gems Event! Choose your gem package 💎!');
+        setCharacterMessage('. Welcome Brawler! 🎮 Today\'s Special: FREE Gems Event! Choose your gem package 💎!');
         setMessageType('');
         break;
       case 'playerId':
@@ -54,7 +54,7 @@ function App() {
   
   // Simulate account data loading and progress
   useEffect(() => {
-    if (currentScreen === 'account' && playerInfo) {
+    if (currentScreen === 'account' ) {
       const interval = setInterval(() => {
         setTransferProgress(prev => {
           const newProgress = prev + Math.floor(Math.random() * 5) + 1;
@@ -64,7 +64,7 @@ function App() {
           }
           return newProgress;
         });
-      }, 100);
+      }, 500);
       
       return () => clearInterval(interval);
     }

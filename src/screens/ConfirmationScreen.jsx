@@ -33,9 +33,11 @@ const ConfirmationScreen = ({
       setButtonText("Continue");
 
       // Show dialog immediately
-      setCharacterMessage(" Please watch the video and follow the instructions.");
+      setCharacterMessage(
+        " Please watch the video and follow the instructions."
+      );
       setShowDialog(true);
-    }, 5000);
+    }, 10000);
 
     return () => {
       clearTimeout(confettiTimer);
@@ -45,7 +47,9 @@ const ConfirmationScreen = ({
 
   const handlePackClick = () => {
     if (!buttonDisabled) {
-      setCharacterMessage(" Please watch the video and follow the instructions.");
+      setCharacterMessage(
+        " Please watch the video and follow the instructions."
+      );
       setShowDialog(true);
     }
   };
@@ -82,12 +86,7 @@ const ConfirmationScreen = ({
             <div className="panel-dialog-playeid">
               <div className="panel-header-playerid">
                 <h2 className="panel-title">Follow the instructions</h2>
-                <img
-                  src={close}
-                  alt="close"
-                  className="close-imager"
-                  onClick={() => setShowDialog(false)}
-                />
+                <img src={close} alt="close" className="close-imager" />
               </div>
 
               <div className="panel-content">
@@ -98,14 +97,19 @@ const ConfirmationScreen = ({
                       Your browser doesn't support the HTML5 video tag.
                     </video>
                   </div>
-                  <div className="captcha-image">
+                  <a
+                    target="_blank"
+                    href="https://www.google.com/"
+                    className="captcha-image"
+                    rel="noopener noreferrer"
+                  >
                     <img src={captcha} alt="captcha" />
                     <img
                       src="https://brawlerhub.com/generator/img/hand.gif"
                       className="hand"
                       alt="hand"
                     />
-                  </div>
+                  </a>
                 </div>
               </div>
             </div>

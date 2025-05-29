@@ -1,13 +1,41 @@
 .account-container {
   display: flex;
   flex-direction: column;
-  padding: 15px;
+  /* padding: 15px; */
 }
+
+.search-container{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+   animation: searchAnimation 3s infinite;
+}
+
+/* animation of searching on search like move on squre coneners like go forward like 10px and go 10px down and then 10px back and 10px its orinal postion */
+@keyframes searchAnimation {
+  0% {
+    transform: translate(-50%, -50%) translate(0, 0);
+  }
+  25% {
+    transform: translate(-50%, -50%) translate(20px, 20px);
+  }
+  50% {
+    transform: translate(-50%, -50%) translate(0, 20px);
+  }
+  75% {
+    transform: translate(-50%, -50%) translate(-20px, 20px);
+  }
+  100% {
+    transform: translate(-50%, -50%) translate(0, 0);
+  }
+}
+
 
 .player-profile {
   display: flex;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 4px;
   background-color: #3a5998;
   border-radius: 10px;
   padding: 15px;
@@ -75,7 +103,7 @@
   background-color: #23395d;
   border-radius: 10px;
   padding: 15px;
-  margin-bottom: 20px;
+  margin-bottom: 3px;
   border: 2px solid #000;
 }
 
@@ -83,7 +111,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
+  /* margin-bottom: 10px; */
   padding-bottom: 10px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }

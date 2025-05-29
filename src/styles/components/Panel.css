@@ -11,6 +11,7 @@
     background-color: #2653d9;
     border: 3px solid #1a318d;
     border-radius: 5px;
+    position: relative;
 }
 
 @media (max-width: 600px) {
