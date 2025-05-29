@@ -10,16 +10,18 @@ const PlayerIdScreen = ({ onSubmit, setShowDialog,setCurrentScreen }) => {
   const [isLoading, setIsLoading] = useState(false);
     const [showvideoDialgo, setshowvideoDialgo] = useState(false);
   
- const handleSubmit = async () => {
+const handleSubmit = async () => {
   setError('');
 
-  if (!playerId || playerId.length < 3) {
-    setError('Please enter a valid Player ID (at least 3 characters).');
+  const tag = playerId.replace('#', '').trim().toUpperCase();
+
+  const isValidTag = /^[A-Z0-9]{3,10}$/.test(tag);
+
+  if (!isValidTag) {
+    setError('Player tag is invalid. It must be between 3 to 10 characters and contain only letters and numbers.');
     return;
   }
 
-  // Remove '#' from the input
-  const tag = playerId.replace('#', '').trim();
   setIsLoading(true);
 
   try {
@@ -33,10 +35,15 @@ const PlayerIdScreen = ({ onSubmit, setShowDialog,setCurrentScreen }) => {
     const data = await response.json();
 
     if (!response.ok || data.error) {
-      // Check for "Not Found" error specifically
+      // Handle specific backend error messages
       if (data.reason?.includes("Not Found") || data.message?.includes("Not Found")) {
         throw new Error('Please enter a correct Player Tag. The tag you entered is invalid or does not exist.');
       }
+
+      if (data.reason?.includes("3-10")) {
+        throw new Error("Player tag is invalid. It must be between 3 to 10 characters and contain only letters and numbers.");
+      }
+
       throw new Error(data.reason || data.message || 'Failed to fetch player data');
     }
 
@@ -46,21 +53,16 @@ const PlayerIdScreen = ({ onSubmit, setShowDialog,setCurrentScreen }) => {
 
     localStorage.setItem("playerData", JSON.stringify(data));
     setShowDialog(false);
-    onSubmit(playerId);
-
+    onSubmit(`#${tag}`); // Optional: Add '#' back before submitting
   } catch (err) {
     console.error('Player fetch error:', err);
-    // Set user-friendly error message
-    if (err.message.includes('Not Found') || err.message.includes('invalid')) {
-      setError('Please enter a correct Player Tag. The tag you entered is invalid or does not exist.');
-    } else {
-      setError(err.message || 'Something went wrong. Please try again.');
-    }
+    setError(err.message || 'Something went wrong. Please try again.');
   } finally {
     setShowDialog(true);
     setIsLoading(false);
   }
 };
+
   const videoRef = useRef(null);
 
 

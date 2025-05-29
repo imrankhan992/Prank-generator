@@ -38,12 +38,12 @@ function App() {
       
       // Change the message after 3 seconds
       timeout = setTimeout(() => {
-        setCharacterMessage(" Awesome kiyee! 🎉 Let me add gems to your account. Please wait a moment ⏳💎");
+        setCharacterMessage(" Awesome! 🎉 Let me add gems to your account. Please wait a moment ⏳💎");
         setMessageType('');
       }, 4000);
       break;
       case 'confirmation':
-        setCharacterMessage(' CONGRATULATIONS kiyee, 💎 Your gems are ready to claim!');
+        setCharacterMessage(' CONGRATULATIONS, 💎 Your gems are ready to claim!');
         setMessageType('success');
         break;
        
@@ -81,7 +81,7 @@ function App() {
     // Simulate player data
     setPlayerInfo({
       id: id,
-      name: 'kiyee',
+      name: '',
       trophies: 7,
       victories3v3: 0,
       victoriesSolo: 0,
