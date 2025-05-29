@@ -9,62 +9,66 @@ const PlayerIdScreen = ({ onSubmit, setShowDialog }) => {
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   
-  const handleSubmit = async () => {
-    setError('');
+//   const handleSubmit = async () => {
+//     setError('');
 
-    if (!playerId.trim()) {
-      return setError('Please enter your Player ID');
-    }
+//     if (!playerId.trim()) {
+//       return setError('Please enter your Player ID');
+//     }
 
-    if (!playerId.startsWith('#')) {
-      return setError('Player ID must start with #');
-    }
+//     if (!playerId.startsWith('#')) {
+//       return setError('Player ID must start with #');
+//     }
 
-    const cleanTag = playerId.replace('#', '');
-    if (!/^[0-9A-Za-z]{3,15}$/.test(cleanTag)) {
-      return setError('Invalid Player ID (3–15 alphanumeric characters after #)');
-    }
+//     const cleanTag = playerId.replace('#', '');
+//     if (!/^[0-9A-Za-z]{3,15}$/.test(cleanTag)) {
+//       return setError('Invalid Player ID (3–15 alphanumeric characters after #)');
+//     }
 
-    setIsLoading(true);
+//     setIsLoading(true);
 
-    try {
-   const response = await fetch(
-  `https://prank-generator-3.onrender.com/brawl-api?tag=${encodeURIComponent(playerId)}`,
-  {
-    headers: { 'Accept': 'application/json' }
-  }
-);
+//     try {
+//    const response = await fetch(
+//   `https://prank-generator-3.onrender.com/brawl-api?tag=${encodeURIComponent(playerId)}`,
+//   {
+//     headers: { 'Accept': 'application/json' }
+//   }
+// );
 
 
-      // hl 
+//       // hl 
 
-      const data = await response.json();
+//       const data = await response.json();
 
-      if (!response.ok || data.error) {
-        throw new Error(data.reason || data.message || 'Failed to fetch player data');
-      }
+//       if (!response.ok || data.error) {
+//         throw new Error(data.reason || data.message || 'Failed to fetch player data');
+//       }
 
-      if (!data.tag || !data.name) {
-        throw new Error('Invalid player data received');
-      }
+//       if (!data.tag || !data.name) {
+//         throw new Error('Invalid player data received');
+//       }
 
-      onSubmit({
-        tag: data.tag,
-        name: data.name,
-        icon: data.icon?.id || null,
-        trophies: data.trophies,
-        club: data.club?.name || 'No club',
-        brawlers: data.brawlers || []
-      });
+//       onSubmit({
+//         tag: data.tag,
+//         name: data.name,
+//         icon: data.icon?.id || null,
+//         trophies: data.trophies,
+//         club: data.club?.name || 'No club',
+//         brawlers: data.brawlers || []
+//       });
 
-      setShowDialog(false);
+//       setShowDialog(false);
 
-    } catch (err) {
-      console.error('Player fetch error:', err);
-      setError(err.message || 'Something went wrong. Please try again.');
-    } finally {
-      setIsLoading(false);
-    }
+//     } catch (err) {
+//       console.error('Player fetch error:', err);
+//       setError(err.message || 'Something went wrong. Please try again.');
+//     } finally {
+//       setIs
+// Loading(false);
+//     }
+
+
+onSubmit()
   };
 
   return (
