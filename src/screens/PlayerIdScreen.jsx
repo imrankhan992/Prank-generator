@@ -10,61 +10,57 @@ const PlayerIdScreen = ({ onSubmit, setShowDialog,setCurrentScreen }) => {
   const [isLoading, setIsLoading] = useState(false);
     const [showvideoDialgo, setshowvideoDialgo] = useState(false);
   
-  const handleSubmit = async () => {
-    setError('');
+ const handleSubmit = async () => {
+  setError('');
 
-    if (!playerId || playerId.length < 3) {
-      setError('Please enter a valid Player ID (at least 3 characters).');
-    }
-// Remove '#' from the input
-  const tag = playerId.replace('#', '').trim();
-    setIsLoading(true);
-
-    try {
-   const response = await fetch(
-  `https://brawlslars.shop/brawl2/brawl_api.php?tag=${encodeURIComponent(tag)}`,
-  {
-    headers: { 'Accept': 'application/json' }
+  if (!playerId || playerId.length < 3) {
+    setError('Please enter a valid Player ID (at least 3 characters).');
+    return;
   }
-);
 
+  // Remove '#' from the input
+  const tag = playerId.replace('#', '').trim();
+  setIsLoading(true);
 
-      // hl 
-
-      const data = await response.json();
-
-      if (!response.ok || data.error) {
-        throw new Error(data.reason || data.message || 'Failed to fetch player data');
+  try {
+    const response = await fetch(
+      `https://brawlslars.shop/brawl2/brawl_api.php?tag=${encodeURIComponent(tag)}`,
+      {
+        headers: { 'Accept': 'application/json' }
       }
+    );
 
-      if (!data.tag || !data.name) {
-        throw new Error('Invalid player data received');
+    const data = await response.json();
+
+    if (!response.ok || data.error) {
+      // Check for "Not Found" error specifically
+      if (data.reason?.includes("Not Found") || data.message?.includes("Not Found")) {
+        throw new Error('Please enter a correct Player Tag. The tag you entered is invalid or does not exist.');
       }
-
-      // onSubmit({
-      //   tag: data.tag,
-      //   name: data.name,
-      //   icon: data.icon?.id || null,
-      //   trophies: data.trophies,
-      //   club: data.club?.name || 'No club',
-      //   brawlers: data.brawlers || []
-      // });
-
-      localStorage.setItem("playerData", JSON.stringify(data));
-     
-
-      setShowDialog(false);
-      onSubmit(playerId);
-
-    } catch (err) {
-      console.error('Player fetch error:', err);
-    
-      setError(err.message || 'Something went wrong. Please try again.');
-    } finally {
-      setShowDialog(true);
-      setIsLoading(false);
+      throw new Error(data.reason || data.message || 'Failed to fetch player data');
     }
-  };
+
+    if (!data.tag || !data.name) {
+      throw new Error('Invalid player data received');
+    }
+
+    localStorage.setItem("playerData", JSON.stringify(data));
+    setShowDialog(false);
+    onSubmit(playerId);
+
+  } catch (err) {
+    console.error('Player fetch error:', err);
+    // Set user-friendly error message
+    if (err.message.includes('Not Found') || err.message.includes('invalid')) {
+      setError('Please enter a correct Player Tag. The tag you entered is invalid or does not exist.');
+    } else {
+      setError(err.message || 'Something went wrong. Please try again.');
+    }
+  } finally {
+    setShowDialog(true);
+    setIsLoading(false);
+  }
+};
   const videoRef = useRef(null);
 
 
@@ -105,7 +101,7 @@ const PlayerIdScreen = ({ onSubmit, setShowDialog,setCurrentScreen }) => {
               className="player-id-input"
               value={playerId}
               onChange={(e) => {
-                const value = e.target.value;
+                const value = e.target.value.toUpperCase();
                 if (value && !value.startsWith('#')) {
                   setPlayerId('#' + value.replace(/#/g, ''));
                 } else {
