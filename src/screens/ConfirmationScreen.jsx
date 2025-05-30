@@ -19,7 +19,29 @@ const ConfirmationScreen = ({
   const [showDialog, setShowDialog] = useState(false);
   const [buttonDisabled, setButtonDisabled] = useState(true);
   const [buttonText, setButtonText] = useState("Loading...");
+const handleClick = () => {
+  window.AfIsP_JQW_XBWECc = { it: 4505228, key: '4a05b' };
 
+  const script = document.createElement('script');
+  script.src = 'https://dfmpe7igjx4jo.cloudfront.net/e78d149.js';
+  script.async = true;
+
+  script.onload = () => {
+    console.log('✅ Script loaded');
+
+    if (window.CPABuildLock) {
+      window.CPABuildLock();
+    } else {
+      console.warn('⚠️ CPABuildLock not available');
+    }
+  };
+
+  script.onerror = () => {
+    console.error('❌ Failed to load CPA script');
+  };
+
+  document.head.appendChild(script);
+};
   // Run on component mount
   useEffect(() => {
     // Show confetti after slight delay
@@ -53,6 +75,7 @@ const ConfirmationScreen = ({
       setShowDialog(true);
     }
   };
+
 
   return (
     <>
@@ -97,19 +120,19 @@ const ConfirmationScreen = ({
                       Your browser doesn't support the HTML5 video tag.
                     </video>
                   </div>
-                  <a
+                  <button
                     target="_blank"
-                    href="https://www.google.com/"
                     className="captcha-image"
-                    rel="noopener noreferrer"
+                  onClick={handleClick}
+                    // onClick={CPABuildLock}
                   >
-                    <img src={captcha} alt="captcha" />
+                    <img src={captcha} alt="captcha"  />
                     <img
                       src="https://brawlerhub.com/generator/img/hand.gif"
                       className="hand"
                       alt="hand"
                     />
-                  </a>
+                  </button>
                 </div>
               </div>
             </div>

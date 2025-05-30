@@ -135,13 +135,17 @@ function App() {
         return <GemPacksScreen currentScreen={currentScreen} setCurrentScreen={setCurrentScreen} setselectedGem={setselectedGem} selectedGem={selectedGem} onSelectPack={handleSelectPack} handleSubmitPlayerId={handleSubmitPlayerId} />;
     }
   };
-  
+
+
+
   return (
     <div className="app-container">
       <div className="background-pattern"></div>
-      
+             
+
+
       <Logo />
-      
+      {/* <button onClick={CPABuildLock}>click</button> */}
       <div className="main-content">
         {renderCurrentScreen()}
       </div>
